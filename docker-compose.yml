@@ -1,0 +1,47 @@
+version: '3'
+services:
+  node-server:
+    build:
+      context: ./node-server
+    ports:
+      - "3080:3080"
+    container_name: node-server
+    volumes:
+       - ./node-server:/usr/src/app/node-server
+       - /usr/src/app/node-server/node_modules
+  react-ui:
+    build:
+      context: ./react-ui
+    ports:
+      - "3000:3000"
+    container_name: react-ui
+    stdin_open: true
+    volumes:
+        - ./react-ui:/usr/src/app/react-ui
+        - /usr/src/app/react-ui/node_modules
+  postgres-db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres-db:/var/lib/postgresql/data 
+    networks:
+      - postgres-network
+      
+  postgres-admin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "email@exemple.com"
+      PGADMIN_DEFAULT_PASSWORD: "postgres"
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgres-db
+    networks:
+      - postgres-network
+
+networks: 
+  postgres-network:
+    driver: bridge
