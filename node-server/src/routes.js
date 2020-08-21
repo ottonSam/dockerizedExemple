@@ -6,7 +6,7 @@ const SubContentController = require('./controllers/SubContentController');
 const routes = express.Router();
 
 routes.get('/', (req, res) => {
-    return res.json({ hello: 'World' });
+    return res.json({ hello: 'Hey bro you shouldnt be here' });
 })
 
 routes.post('/schsubject', SchSubjectController.store);
