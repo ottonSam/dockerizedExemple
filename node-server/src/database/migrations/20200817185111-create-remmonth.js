@@ -3,7 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('rem_months', {
-      rem_id: {
+      id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -13,11 +13,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      rem_created_at: {
+      created_at: {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      rem_updated_at: {
+      updated_at: {
         type: Sequelize.DATE,
         allowNull: false,
       },

@@ -5,11 +5,14 @@ class SubContent extends Model {
         super.init({
             sub_name: DataTypes.STRING,
             sub_type: DataTypes.STRING,
-            sub_sch_id: DataTypes.INTEGER,
-            sub_rem_id: DataTypes.INTEGER,
         }, {
             sequelize
         })
+    }
+
+    static associate(models) {
+        this.belongsTo(models.SchSubject, { foreignKey: 'sub_sch_id', as: 'sch_content'});
+        this.belongsTo(models.RemMonths, { foreignKey: 'sub_rem_id', as : 'rem_content'});
     }
 }
 

@@ -9,6 +9,8 @@ const connection = new Sequelize(dbConfig);
 
 SchSubject.init(connection);
 RemMonths.init(connection);
-SchSubject.init(connection);
+SubContent.init(connection);
+
+SubContent.associate(connection.models);
 
 module.exports = connection;

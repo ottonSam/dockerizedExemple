@@ -2,8 +2,8 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('sub_content', {
-      sub_id: {
+    await queryInterface.createTable('sub_contents', {
+      id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -20,23 +20,31 @@ module.exports = {
       sub_sch_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'sch_subject', key: 'sch_id'},
+        references: { model: 'sch_subjects', key: 'id'},
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
       sub_rem_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'rem_months', key: 'rem_id' },
+        references: { model: 'rem_months', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
+      },
+      created_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      updated_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
       },
     });
   },
 
   down: async (queryInterface, Sequelize) => {
     
-    await queryInterface.dropTable('sub_content');
+    await queryInterface.dropTable('sub_contents');
 
   }
 };

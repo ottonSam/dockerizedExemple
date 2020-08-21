@@ -3,8 +3,8 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
    
-     await queryInterface.createTable('sch_subject', {
-        sch_id: {
+     await queryInterface.createTable('sch_subjects', {
+        id: {
          type: Sequelize.INTEGER,
          primaryKey: true,
          autoIncrement: true,
@@ -14,11 +14,11 @@ module.exports = {
           type: Sequelize.STRING,
           allowNull: false,
         },
-        sch_created_at: {
+        created_at: {
           type: Sequelize.DATE,
           allowNull: false,
         },
-        sch_updated_at: {
+        updated_at: {
           type: Sequelize.DATE,
           allowNull: false,
         },
@@ -29,7 +29,7 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
     
-    await queryInterface.dropTable('sch_subject');
+    await queryInterface.dropTable('sch_subjects');
 
   }
 };
