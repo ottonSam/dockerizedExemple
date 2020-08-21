@@ -1,6 +1,6 @@
 module.exports = {
     dialect: 'postgres',
-    host: 'localhost',
+    host: 'postgres-db',
     username: 'postgres',
     password: 'postgres',
     database: 'enem_schedule',
