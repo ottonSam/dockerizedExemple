@@ -22,26 +22,9 @@ services:
   postgres-db:
     image: postgres
     environment:
+      POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "postgres"
     ports:
       - "5432:5432"
     volumes:
       - ./postgres-db:/var/lib/postgresql/data 
-    networks:
-      - postgres-network
-      
-  postgres-admin:
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: "email@exemple.com"
-      PGADMIN_DEFAULT_PASSWORD: "postgres"
-    ports:
-      - "16543:80"
-    depends_on:
-      - postgres-db
-    networks:
-      - postgres-network
-
-networks: 
-  postgres-network:
-    driver: bridge
