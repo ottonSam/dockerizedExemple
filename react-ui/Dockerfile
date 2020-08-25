@@ -1,11 +1,14 @@
-FROM node:12.18.3
+FROM node:12.18.3-alpine
 
-WORKDIR /usr/src/app/react-ui
+WORKDIR /app
 
-COPY package*.json ./
+ENV PATH /app/node_modules/.bin:$PATH
 
-RUN npm install
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm install --silent
+RUN npm install react-scripts@3.4.1 -g --silent
 
-EXPOSE 3000
+COPY . ./
 
 CMD ["npm", "start"]
